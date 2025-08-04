@@ -7,15 +7,14 @@ public class BrokenDuplicateRemover {
         int[] arr = {1, 2, 2, 3, 4, 4, 5};
         Arrays.sort(arr);
 
-        // Incorrect logic: tries to remove duplicates using random index swapping
+        int index = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == arr[i + 1]) {
-                arr[i] = -1; // Marking duplicate with -1 (bad idea if -1 is a valid value)
-                arr[i + 1] = arr[i]; // overwriting next value blindly
+           if (i == 0 || arr[i] != arr[i - 1]) {
+                arr[index++] = arr[i];
             }
         }
 
-        // Wrong filtering: prints all values except -1
+        
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] != -1) {
                 System.out.print(arr[i] + " ");
